@@ -1,0 +1,439 @@
+{
+  "name": "Monthly Assessment Marks Calculation (DS & DA)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Monthly Assessment Marks",
+        "formDescription": "Calculate module-wise marks for students in DS or DA courses to determine their eligibility for the placement drive",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Select the Course",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Data Science"
+                  },
+                  {
+                    "option": "Data Analytics"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Full Name",
+              "placeholder": "Enter your Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Batch Number",
+              "fieldType": "number",
+              "placeholder": "What is your Batch Number",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -848,
+        64
+      ],
+      "id": "a05cdafa-ba74-4523-b334-a54b4abb0a9e",
+      "name": "On form submission",
+      "webhookId": "5015775c-175b-4e26-84f6-6748c5f603b0"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json[\"Select the Course\"] }}",
+                    "rightValue": "=Data Science",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "d0fb1bfb-6197-459c-969d-3afa7889c5a6"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "data_science"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fc0af602-cede-4b8a-8ca8-147ab43553ce",
+                    "leftValue": "={{ $json[\"Select the Course\"] }}",
+                    "rightValue": "Data Analytics",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "data_analytics"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -576,
+        48
+      ],
+      "id": "181ff4d8-7935-4161-8fca-67289a60dc03",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Python Programming",
+              "fieldType": "number",
+              "placeholder": "1 - 100                                    ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Exploratory data analysis(EDA)",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "SQL",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Power BI",
+              "fieldType": "number",
+              "placeholder": "Enter NLP marks",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Advance_Statistics",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Machine Learning(ML)",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Artifical Neural Networks(ANN)",
+              "fieldType": "number",
+              "placeholder": "1 - 100"
+            },
+            {
+              "fieldLabel": "Convolutional Neural Networks(CNN)",
+              "fieldType": "number",
+              "placeholder": "1 - 100"
+            },
+            {
+              "fieldLabel": "Natural Language Processing(NLP)",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Generative AI(GenAI)",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Data Science Monthly Assessment Marks",
+          "buttonLabel": "Submit"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        -96
+      ],
+      "id": "d8a311c2-12ca-464c-aeed-c5e51dfb2e14",
+      "name": "DS marks sheet",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Python",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "EDA",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "SQL",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Power BI",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Advanced Statistics",
+              "fieldType": "number",
+              "placeholder": "1 - 100",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Data Analytics Monthly Assessment Marks",
+          "buttonLabel": "Submit"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        192
+      ],
+      "id": "224cda01-eb24-4686-979a-9cd55c3a24de",
+      "name": "DA marks sheet",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Monthly Assessment Submitted ",
+        "completionMessage": "={{ $json.Final_Result }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        656,
+        -208
+      ],
+      "id": "c6420e9e-2e8c-4b5c-89bb-016f81c7f8f6",
+      "name": "Eligible",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Monthly Assessment Submitted ",
+        "completionMessage": "={{ $json.Final_Result }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        0
+      ],
+      "id": "22feeef8-2069-434b-845a-232c466549da",
+      "name": "Not Eligible",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Monthly Assessment Submitted ",
+        "completionMessage": "={{ $json.Final_Result }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        128
+      ],
+      "id": "15b3a2e8-53e7-412f-800c-a74a113d0aa2",
+      "name": "Eligible1",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Monthly Assessment Submitted ",
+        "completionMessage": "={{ $json.Final_Result }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        352
+      ],
+      "id": "419cc3ec-bd21-42c0-b791-5e457da81ea1",
+      "name": "Not Eligible1",
+      "webhookId": "84afc48d-26a9-46af-b6fd-d17c1b16d982"
+    },
+    {
+      "parameters": {
+        "language": "pythonNative",
+        "pythonCode": "# Get the submitted form data\nform_data = _items[0][\"json\"]\n\n# Helper function to safely get a value by keyword\ndef get_mark(keyword, default=0):\n    for k, v in form_data.items():\n        if keyword.lower() in k.lower():\n            try:\n                return int(v)\n            except:\n                return default\n    return default\n\n# Extract marks for DA course modules using keywords\nPython = get_mark(\"python\")\nEDA = get_mark(\"eda\")\nSQL = get_mark(\"sql\")\nPOWERBI = get_mark(\"power\")\nADV_STATS = get_mark(\"advance\")\n\n# Store marks and module names\nmarks = [Python, EDA, SQL, POWERBI, ADV_STATS]\nmodules = [\n    \"Python Programming\",\n    \"Exploratory data analysis(EDA)\",\n    \"SQL\",\n    \"Power BI\",\n    \"Advance_Statistics\"\n]\n\n# Identify weak modules (<=70 marks)\nweak_modules = {modules[i]: marks[i] for i in range(len(marks)) if marks[i] <= 70}\n\n# Calculate average marks\navg_marks = round(sum(marks) / len(marks), 2)\n\n# Prepare weak modules text in neat format\nif weak_modules:\n    weak_text = \"\\n\".join([f\"  • {mod}: {mark}\" for mod, mark in weak_modules.items()])\nelse:\n    weak_text = \"  None\"\n\n# Determine eligibility\nif avg_marks >= 70:\n    eligible = True\n    eligibility_text = \"🎉 Congratulations! You are eligible for the placement drive!\"\nelse:\n    eligible = False\n    eligibility_text = \"⚠ You are not eligible. Please focus on improving the following modules:\"\n\n# Combine final message with neat formatting\nfinal_message = (\n    f\"📄 Monthly Assessment Submitted\\n\\n\"\n    f\"{eligibility_text}\\n\\n\"\n    f\"Weak Modules:\\n{weak_text}\\n\\n\"\n    f\"Average Marks: {avg_marks}\"\n)\n\n# Return the message and eligibility status for Google Form node\nreturn [{\n    \"json\": {\n        \"Final_Result\": final_message,\n        \"eligible\": eligible\n    }\n}]\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        192
+      ],
+      "id": "d1171237-9bed-4800-b085-299d9a69263d",
+      "name": "cal avg_DA marks"
+    },
+    {
+      "parameters": {
+        "language": "pythonNative",
+        "pythonCode": "# Extract marks from form submission\nPython = int(_items[0][\"json\"][\"Python Programming\"])\nEDA = int(_items[0][\"json\"][\"Exploratory data analysis(EDA)\"])\nSQL = int(_items[0][\"json\"][\"SQL\"])\nPOWERBI = int(_items[0][\"json\"][\"Power BI\"])\nADV_STATS = int(_items[0][\"json\"][\"Advance_Statistics\"])\nML = int(_items[0][\"json\"][\"Machine Learning(ML)\"])\nANN = int(_items[0][\"json\"][\"Artifical Neural Networks(ANN)\"])\nCNN = int(_items[0][\"json\"][\"Convolutional Neural Networks(CNN)\"])\nNLP = int(_items[0][\"json\"][\"Natural Language Processing(NLP)\"])\nGEN_AI = int(_items[0][\"json\"][\"Generative AI(GenAI)\"])\n\n# Store marks and module names\nmarks = [Python, EDA, SQL, POWERBI, ADV_STATS, ML, ANN, CNN, NLP, GEN_AI]\nmodules = [\n    \"Python Programming\",\n    \"Exploratory data analysis(EDA)\",\n    \"SQL\",\n    \"Power BI\",\n    \"Advance_Statistics\",\n    \"Machine Learning(ML)\",\n    \"Artifical Neural Networks(ANN)\",\n    \"Convolutional Neural Networks(CNN)\",\n    \"Natural Language Processing(NLP)\",\n    \"Generative AI(GenAI)\"\n]\n\n# Identify weak modules (<=70 marks)\nweak_modules = {modules[i]: marks[i] for i in range(len(marks)) if marks[i] <= 70}\n\n# Calculate average marks\navg_marks = round(sum(marks) / len(marks), 2)\n\n# Prepare weak modules text in neat format\nif weak_modules:\n    weak_text = \"\\n\".join([f\"  • {mod}: {mark}\" for mod, mark in weak_modules.items()])\nelse:\n    weak_text = \"  None\"\n\n# Determine eligibility\nif avg_marks > 70:\n    eligibility_text = \"🎉 Congratulations! You are eligible for the placement drive!\"\nelse:\n    eligibility_text = \"⚠ You are not eligible. Please focus on improving the following modules:\"\n\n# Combine final message with neat formatting\nfinal_message = (\n    f\"📄 Monthly Assessment Submitted\\n\\n\"\n    f\"{eligibility_text}\\n\\n\"\n    f\"Weak Modules:\\n{weak_text}\\n\\n\"\n    f\"Average Marks: {avg_marks}\"\n)\n\n# Return the message for Google Form node\nreturn [{\n    \"json\": {\n        \"Final_Result\": final_message\n    }\n}]\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        -96
+      ],
+      "id": "356d25fa-5fab-4a12-9806-d7a0ea2faa90",
+      "name": "cal avg_DS marks"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "DS marks sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DA marks sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DS marks sheet": {
+      "main": [
+        [
+          {
+            "node": "cal avg_DS marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DA marks sheet": {
+      "main": [
+        [
+          {
+            "node": "cal avg_DA marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cal avg_DA marks": {
+      "main": [
+        [
+          {
+            "node": "Eligible1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Not Eligible1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cal avg_DS marks": {
+      "main": [
+        [
+          {
+            "node": "Eligible",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Not Eligible",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "89e387d5-81dc-4247-8a79-4facf52c0967",
+  "meta": {
+    "instanceId": "c480dce606af8941d237e725b3a3b1668cd3c0d796d53a2474b2d3f015475cf3"
+  },
+  "id": "1R8sY6p9YUb0km7v",
+  "tags": []
+}
